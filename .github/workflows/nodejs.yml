@@ -12,6 +12,7 @@ jobs:
     - name: Read .nvmrc
       run: echo ::set-output name=NVMRC::$(cat .nvmrc)
       id: nvm
+      working-directory: exercises/javascript
     - name: Setup node
       uses: actions/setup-node@v1
       with:
