@@ -9,13 +9,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: nvm install, npm install, build, and test
+    - name: Read .nvmrc
+      run: echo ::set-output name=NVMRC::$(cat .nvmrc)
+      id: nvm
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '${{ steps.nvm.outputs.NVMRC }}'
+    - name: npm install, build, and test
       run: |
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        nvm install
-        nvm use
         npm ci
         npm test
       working-directory: exercises/javascript
