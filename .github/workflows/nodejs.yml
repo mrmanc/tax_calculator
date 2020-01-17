@@ -16,6 +16,6 @@ jobs:
       run: |
         npm ci
         npm test
+      working-directory: exercises/javascript
       env:
         CI: true
-      working-directory: exercises/javascript
