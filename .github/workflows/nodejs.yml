@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Set up node using nvm
       uses: dcodeIO/setup-node-nvm@v2.0.0
+      working-directory: exercises/javascript
     - name: npm install, build, and test
       run: |
         npm ci
